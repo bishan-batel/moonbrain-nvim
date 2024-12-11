@@ -1,0 +1,38 @@
+@inputs(height)
+@outputs(thruster)
+
+fn divide_by(numer, denom) {
+	if denom == 0 {
+		return [nil, Error.new("Invalid Denomerator")];
+	}
+}
+
+fn ready() {
+	Chip.print("bye bye")
+
+	outputs.thruster = true
+
+
+	let x = 10
+	let y = 0
+
+	let result = divide_by(x, y)
+
+	if err == nil {
+		Chip.error("Failed to divide: {err}")
+		return
+	}
+
+}
+
+fn update() {
+	if inputs.height < 20 == true {
+		outputs.thruster = true;
+	} else {
+		outputs.thruster = false
+		Chip.shutdown("Done")
+	}
+}
+
+
+# vim: ft=gooscript:
