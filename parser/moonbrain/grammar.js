@@ -15,25 +15,36 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(
-      seq($.directive)
+      repeat(seq($.directive, optional(";"))),
+
+      repeat(seq(choice(
+        $.fn_statement,
+        $.variable_declare
+      ), optional(";")))
     ),
 
     directive: $ => seq(
       field("name", seq("@", $.identifier)),
-      optional(seq(
-        "(",
-        commaSep(choice(prec(1000, $.var_name_decl), $.string, $.number, $.bool, $.char)),
-        ")"
+
+      optional(choice(
+        seq("(", ")"),
+        seq(
+          "(",
+          commaSepTrailing(choice($.var_name_decl, $.string, $.number, $.bool)),
+          ")"
+        )
       )),
-      optional(";")
     ),
 
     identifier: _ => /[^0-9\s\[\]\(\)\!\@\#\$\%\^\&\*\-\+\{\}<>\,\.\`\~\/\\\;\:\'\"][^\s\[\]\(\)\!\@\#\$\%\^\&\*\-\+\{\}<>\,\.\`\~\/\\\;\:\'\"]*/,
     number: _ => token(/[0-9]+\.?[0-9]*/),
 
-    type: $ => $.identifier,
+    type: $ => choice(
+      prec.left(500, seq(field("name", $.identifier), optional(seq("<", commaSep1($.type), ">")))),
+      seq("[", commaSep1($.type), "]")
+    ),
 
-    var_name_decl: $ => seq(field("name", $.identifier), optional(seq(":", $.type))),
+    var_name_decl: $ => prec(1000, seq(field("name", $.identifier), optional(seq(":", $.type)))),
 
     _statement: $ => choice(
       $.if_statement,
@@ -63,8 +74,10 @@ module.exports = grammar({
     ),
 
 
+    variable_ident: $ => $.identifier,
+
     _expression: $ => choice(
-      $.identifier,
+      $.variable_ident,
       $.number,
       $.string,
       $.bool,
