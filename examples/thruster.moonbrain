@@ -1,7 +1,7 @@
 @name("ThrusterControl")
 @inputs(bottom_thruster: Thruster, gas_tank: GasTank)
 
-fn update() {
+func update() {
 	if inputs.gas_tank.fuel_level < 10 {
 		Chip.shutdown("bruh")
 	}

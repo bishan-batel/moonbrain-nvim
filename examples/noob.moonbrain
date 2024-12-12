@@ -1,13 +1,34 @@
-@inputs(height)
-@outputs(thruster)
+@inputs("huh");
+@inputs(me: str)
 
-fn divide_by(numer, denom) {
+func divide_by(numer, denom) {
+
+	let a: number = 0;
+
+
+	let [a, b] = true;
+	
+
+
+
+
+
+
 	if denom == 0 {
-		return [nil, Error.new("Invalid Denomerator")];
+		return [nil, Error.new("Invalid Denomerator")]
 	}
 }
 
-fn ready() {
+
+
+
+
+
+func huh() {
+	
+}
+
+func ready() {
 	Chip.print("bye bye")
 
 	outputs.thruster = true
@@ -25,7 +46,7 @@ fn ready() {
 
 }
 
-fn update() {
+func update() {
 	if inputs.height < 20 == true {
 		outputs.thruster = true;
 	} else {

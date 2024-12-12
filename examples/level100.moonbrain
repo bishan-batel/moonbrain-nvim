@@ -2,6 +2,7 @@
 
 @inputs(
 	dir_to_ground: vec2,
+
 	height: number,
 	camera_feed: Image
 )
@@ -14,7 +15,7 @@
 
 let TARGET_HEIGHT = 100;
 
-fn ready() {
+func ready() {
 	Chip.print("Launching")
 
 
@@ -25,10 +26,10 @@ fn ready() {
 	}
 }
 
-fn update() {
+func update() {
 
-	# image brightness needs to go through
-	# every pixel and calculate
+	// image brightness needs to go through
+	// every pixel and calculate
 	let pixels = Image.brightness(inputs.camera_feed);
 	Chip.sleep(10)
 
@@ -44,7 +45,7 @@ fn update() {
 	}
 
 	let x = inputs.dir_to_ground.x
-	left_thruster = x > 0.1
-	right_thruster = x < -0.1
+	outputs.left_thruster = x > 0.1
+	outputs.right_thruster = x < -0.1
 }
 
