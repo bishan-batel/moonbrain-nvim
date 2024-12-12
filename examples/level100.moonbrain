@@ -48,5 +48,3 @@ fn update() {
 	right_thruster = x < -0.1
 }
 
-
-# vim: set ft=gooscript:

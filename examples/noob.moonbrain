@@ -34,5 +34,3 @@ fn update() {
 	}
 }
 
-
-# vim: ft=gooscript:
