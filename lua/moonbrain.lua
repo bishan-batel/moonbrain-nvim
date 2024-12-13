@@ -6,7 +6,7 @@ M.setup = function()
 
 	parser_config["moonbrain"] = {
 		install_info = {
-			url = "~/code/moonbrain/parser/moonbrain/",
+			url = "~/code/moonbrain-nvim/parser/moonbrain/",
 			files = { "src/parser.c" },
 			branch = "main",
 			-- generate_requires_npm = true,
