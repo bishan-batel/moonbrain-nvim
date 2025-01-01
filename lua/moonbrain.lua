@@ -30,8 +30,8 @@ M.setup = function()
 	-- @return integer?
 	local function start_client()
 		return vim.lsp.start_client({
-			name = "gooslsp",
-			cmd = { "meteorlsp" },
+			name = "meteorlsp",
+			cmd = { "meteor-lsp" },
 		})
 	end
 
