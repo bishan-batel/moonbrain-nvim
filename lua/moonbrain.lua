@@ -31,7 +31,7 @@ M.setup = function()
 	local function start_client()
 		return vim.lsp.start_client({
 			name = "gooslsp",
-			cmd = { "/home/bishan_/code/moonbrain/target/debug/meteor-lsp" },
+			cmd = { "meteorlsp" },
 		})
 	end
 
